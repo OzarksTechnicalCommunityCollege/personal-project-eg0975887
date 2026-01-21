@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 from django.utils import timezone
 
@@ -5,6 +6,7 @@ from django.utils import timezone
 
 class VGForm(models.Model):
 
+    # This class holds all the choices for the completion status field
     class CompletionStatus(models.TextChoices):
         NONE = 'ND', 'No Dungeon'
         FIRST = 'FD', 'First Dungeon'
@@ -12,16 +14,16 @@ class VGForm(models.Model):
         THIRD = 'TD', 'Third Dungeon'
 
 
-    versionNum = models.CharField(max_length=250)
-    created = model.DatetimeField(auto_now_add=True)
-    completionStatus = models.CharField(
+    versionNum = models.CharField(max_length=250) # Variable of what version of the game is being documented
+    created = models.DateTimeField(auto_now_add=True) # When the review was created
+    completionStatus = models.CharField( # Level of completion from the reviewer
         max_length=4,
         choices=CompletionStatus,
         default=CompletionStatus.NONE
     )
-    additionalcomments = models.TextField()
+    additionalcomments = models.TextField() # Additional comments from the reviewer
 
 def __str__(self):
-    return self.title
+    return self.versionNum
     
 

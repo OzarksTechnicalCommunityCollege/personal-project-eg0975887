@@ -1,0 +1,14 @@
+{% extends "VGForum/base.html" %}
+
+{% block title %}{{ version.title }}{% endblock %}
+
+{% block content %}
+    <h1>{{ versions.versionNum }}</h1>
+    <p class="date">
+        Created on: {{ versions.created }}
+        | Level of Completion: {{ versions.get_completionStatus_display }} <!--Because this field is a choice field, we use get_completionStatus_display to show the human readable value instead of the database value e.g. "No Dungeon" instead of "ND"-->
+    </p>
+        <p class="date">
+        Additional Thoughts: {{ versions.additionalcomments }}
+    </p>
+{% endblock %}

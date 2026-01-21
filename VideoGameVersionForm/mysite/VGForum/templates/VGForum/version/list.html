@@ -1,0 +1,18 @@
+{% extends "VGForum/base.html" %}
+
+{% block title %}My Versions{% endblock %}
+
+{% block content %}
+    <h1>My Versions</h1>
+        {% for version in versions %} <!-- For each of the variables use version (not versions) becuase of the loop to show the reviews -->
+            <h2>
+                <a href="{% url 'VGForum:version_detail' version.pk %}">
+                    {{ version.versionNum }}
+                </a>
+            </h2>
+            <p class="date">
+                Created on: {{ version.created }}
+                | Level of Completion: {{ version.get_completionStatus_display }} <!--Because this field is a choice field, we use get_completionStatus_display to show the human readable value instead of the database value e.g. "No Dungeon" instead of "ND"-->
+            </p>
+    {% endfor %}
+{% endblock %}
