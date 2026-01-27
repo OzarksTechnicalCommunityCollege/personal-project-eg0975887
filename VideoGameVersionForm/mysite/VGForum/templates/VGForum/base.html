@@ -6,6 +6,9 @@
     <link href="{% static 'css/vgforum.css' %}" rel="stylesheet">
 </head>
 <body> 
+    <header>
+        <h1>VG Forum</h1>
+        {% include "VGForum/version/includes/navbar.html" %} <!-- Navigation bar between versions (list.html) and form (create.html)-->
     <div id="content">
         {% block content %}
         {% endblock %}

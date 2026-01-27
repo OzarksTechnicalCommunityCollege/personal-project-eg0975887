@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404, render
 from .models import VGForm
+from .forms import VGFourmForm
 from django.http import Http404
 
 # Create your views here.
@@ -19,4 +20,19 @@ def version_detail(request, pk): # View to show the details of a specific review
         request, 
         'VGForum/version/detail.html',
         {'versions': versions}
+    )
+
+
+def vg_create(request): # View to create a new VGForm entry
+    if request.method == 'POST': # check to see if the page is pushing a form to be submitted 
+        form = VGFourmForm(request.POST)
+        if form.is_valid():
+            vgform = form.save()
+    else: # if the page is being loaded normally, create a blank form
+        form = VGFourmForm()
+        
+    return render(
+        request,
+        'VGForum/version/create.html',
+        {'form': form}
     )
