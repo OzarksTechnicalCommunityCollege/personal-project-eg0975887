@@ -7,7 +7,8 @@ class VGFourmForm(forms.ModelForm): # django will pull from the ModelForm import
         model = VGForm
         fields = ['completionStatus', 
                   'versionNum',
-                  'additionalcomments'
+                  'additionalcomments',
+                  'tags'
         ]
 
         # NOTE: need to find a way to display the Text for the forms instead of pulling from the fields above

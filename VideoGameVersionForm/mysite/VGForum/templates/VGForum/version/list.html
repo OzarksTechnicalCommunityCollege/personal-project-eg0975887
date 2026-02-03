@@ -10,6 +10,7 @@
                     {{ version.versionNum }}
                 </a>
             </h2>
+            <p class="tags">Tags: {{ version.tags.all|join:", " }}</p>
             <p class="date">
                 Created on: {{ version.created }}
                 | Level of Completion: {{ version.get_completionStatus_display }} <!--Because this field is a choice field, we use get_completionStatus_display to show the human readable value instead of the database value e.g. "No Dungeon" instead of "ND"-->

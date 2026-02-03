@@ -1,11 +1,12 @@
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
+from taggit.managers import TaggableManager
 
 # Create your models here.
 
 class UniversalModel(models.Model): # Class for inheriting field for all models (and to help reduce size of models for better readability)
-    created = models.DateTimeField(auto_now_add=True) # When the review was created
+    created = models.DateTimeField(timezone.now()) # When the review was created (timezone.now())
 
     # Use Meta class to make this an abstract model (not a database table)
     class Meta:
@@ -30,6 +31,8 @@ class VGForm(UniversalModel):
     )
     
     additionalcomments = models.TextField() # Additional comments from the reviewer
+
+    tags = TaggableManager()
 
 def __str__(self):
     return self.versionNum
