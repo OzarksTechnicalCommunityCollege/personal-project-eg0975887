@@ -13,5 +13,8 @@ class VGFourmForm(forms.ModelForm): # django will pull from the ModelForm import
         help_texts = {
             'tags': '',
         }
+        
+class SearchForm(forms.Form):
+    query = forms.CharField()
 
         # NOTE: need to find a way to display the Text for the forms instead of pulling from the fields above

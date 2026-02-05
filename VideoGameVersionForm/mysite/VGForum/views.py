@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, render
 from .models import VGForm
-from .forms import VGFourmForm
+from django.contrib.postgres.search import SearchVector
+from .forms import VGFourmForm, SearchForm
 from django.http import Http404
 
 # Create your views here.
@@ -35,4 +36,25 @@ def vg_create(request): # View to create a new VGForm entry
         request,
         'VGForum/version/create.html',
         {'form': form}
+    )
+    
+def post_search(request): # View to handle searching through the reviews
+    form = SearchForm()
+    query = None
+    results = []
+    
+    if 'query' in request.GET: # Check to see if there is a search query
+        form = SearchForm(request.GET)
+        if form.is_valid():
+            query = form.cleaned_data['query']
+            results = VGForm.objects.annotate(
+                search=SearchVector('versionNum', 'additionalcomments', 'tags__name'),
+            ).filter(search=query)
+    
+    return render(
+        request,
+        'VGForum/version/search.html',
+        {'form': form,
+         'query': query,
+         'results': results}
     )
