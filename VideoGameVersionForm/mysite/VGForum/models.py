@@ -6,7 +6,7 @@ from taggit.managers import TaggableManager
 # Create your models here.
 
 class UniversalModel(models.Model): # Class for inheriting field for all models (and to help reduce size of models for better readability)
-    created = models.DateTimeField(timezone.now()) # When the review was created (timezone.now())
+    created = models.DateTimeField(default=timezone.now) # When the review was created (timezone.now())
 
     # Use Meta class to make this an abstract model (not a database table)
     class Meta:
