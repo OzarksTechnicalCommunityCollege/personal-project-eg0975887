@@ -32,7 +32,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'accounts.apps.AccountsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -59,7 +58,7 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "templates"],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -131,12 +130,3 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
-
-
-# LOGIN_REDIRECT_URL: Tells Django which URL to redirect the user to after a successful login if no next parameter is present in the request
-# LOGIN_URL: The URL to redirect the user to log in (for example, views using the login_required decorator)
-# LOGOUT_URL: The URL to redirect the user to log out
-LOGIN_REDIRECT_URL = 'accounts:dashboard'
-LOGOUT_REDIRECT_URL = 'accounts:login'
-LOGIN_URL = 'accounts:login'
-LOGOUT_URL = 'accounts:logout'

@@ -1,4 +1,3 @@
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, render
 from .models import VGForm
 from django.contrib.postgres.search import SearchVector
@@ -13,8 +12,7 @@ def version_list(request): # View to list all of the written reviews
     return render(
         request,
         'VGForum/version/list.html',
-        {'versions': versions,
-         'section': 'version_list'}
+        {'versions': versions}
     )
     
 def version_detail(request, pk): # View to show the details of a specific review
@@ -22,11 +20,10 @@ def version_detail(request, pk): # View to show the details of a specific review
     return render(
         request, 
         'VGForum/version/detail.html',
-        {'versions': versions,
-         'section': 'version_detail'}
+        {'versions': versions}
     )
 
-@login_required
+
 def vg_create(request): # View to create a new VGForm entry
     if request.method == 'POST': # check to see if the page is pushing a form to be submitted 
         form = VGFourmForm(request.POST)
@@ -38,8 +35,7 @@ def vg_create(request): # View to create a new VGForm entry
     return render(
         request,
         'VGForum/version/create.html',
-        {'form': form,
-         'section': 'create_version'}
+        {'form': form}
     )
     
 def post_search(request): # View to handle searching through the reviews
@@ -60,6 +56,5 @@ def post_search(request): # View to handle searching through the reviews
         'VGForum/version/search.html',
         {'form': form,
          'query': query,
-         'results': results,
-         'section': 'search'}
+         'results': results}
     )
