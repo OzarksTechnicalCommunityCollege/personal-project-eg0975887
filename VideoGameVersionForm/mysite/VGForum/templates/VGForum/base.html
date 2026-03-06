@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}{% endblock%}</title>
+    <link href="{% static 'css/vgforum.css' %}" rel="stylesheet">
+</head>
+<body> 
+    <header>
+        <h1>VG Forum</h1>
+        {% include "VGForum/version/includes/navbar.html" %} <!-- Navigation bar between versions (list.html) and form (create.html)-->
+    <div id="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <div id="sidebar">
+        <h2>About VG Forum</h2>
+        <p></p>
+        <button id="aboutBtn">About This Site</button>
+
+        <div id="aboutText" style="display:none;">
+
+        <h3>What is VG Forum?</h3>
+        <p>
+            VG Forum is a community tool designed to document and review
+            video game development versions. Developers can share early
+            builds of their games while players can track progress and
+            provide feedback on different versions of a game.
+        </p>
+
+        <h3>Purpose of the Site</h3>
+        <p>
+            Many games go through dozens or even hundreds of updates
+            during development. VG Forum allows players and developers
+            to record changes, review gameplay progress, and track how
+            a game evolves from early development stages to release.
+        </p>
+
+        <h3>What You Can Do Here</h3>
+        <ul>
+            <li>Browse all submitted game versions</li>
+            <li>Create a new version review</li>
+            <li>Search reviews by version or keywords</li>
+            <li>Track development progress</li>
+        </ul>
+
+        <h3>Understanding Completion Status</h3>
+        <p>
+            Each review can include a completion status that indicates
+            how far the reviewer progressed in the game. This helps
+            readers understand the perspective of the review.
+        </p>
+
+        <ul>
+            <li><strong>ND</strong> No Dungeon reached</li>
+            <li><strong>FD</strong> First Dungeon completed</li>
+            <li><strong>SD</strong> Second Dungeon completed</li>
+            <li><strong>TD</strong> Third Dungeon completed</li>
+        </ul>
+
+        <h3>Why Version Tracking Matters</h3>
+        <p>
+            Version tracking helps developers see how their game evolves
+            over time. It also helps players understand what features
+            were added, changed, or improved between versions.
+        </p>
+
+    </div>
+    </div>
+    <script src="{% static 'js/vgforum.js' %}"></script>
+</body>
+</html>

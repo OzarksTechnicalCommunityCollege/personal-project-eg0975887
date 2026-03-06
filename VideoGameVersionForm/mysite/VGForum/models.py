@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
+
 from taggit.managers import TaggableManager
 
 # Create your models here.
@@ -34,8 +35,8 @@ class VGForm(UniversalModel):
 
     tags = TaggableManager()
 
-def __str__(self):
-    return self.versionNum
+    def __str__(self):
+        return self.versionNum
 
     
 

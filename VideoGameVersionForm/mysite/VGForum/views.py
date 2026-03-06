@@ -1,9 +1,10 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, render
-from .models import VGForm
 from django.contrib.postgres.search import SearchVector
-from .forms import VGFourmForm, SearchForm
 from django.http import Http404
+
+from .models import VGForm
+from .forms import VGFourmForm, SearchForm
 
 # Create your views here.
 
@@ -16,6 +17,7 @@ def version_list(request): # View to list all of the written reviews
         {'versions': versions,
          'section': 'version_list'}
     )
+    
     
 def version_detail(request, pk): # View to show the details of a specific review
     versions = get_object_or_404(VGForm, pk=pk) # The review is sent to the detail view using its primary key from the list view
@@ -42,6 +44,7 @@ def vg_create(request): # View to create a new VGForm entry
          'section': 'create_version'}
     )
     
+    
 def post_search(request): # View to handle searching through the reviews
     form = SearchForm()
     query = None
@@ -52,7 +55,11 @@ def post_search(request): # View to handle searching through the reviews
         if form.is_valid():
             query = form.cleaned_data['query']
             results = VGForm.objects.annotate(
-                search=SearchVector('versionNum', 'additionalcomments', 'tags__name'),
+                search=SearchVector(
+                    'versionNum', 
+                    'additionalcomments', 
+                    'tags__name'
+                ),
             ).filter(search=query)
     
     return render(
